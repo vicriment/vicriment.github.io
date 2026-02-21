@@ -77,15 +77,13 @@ const {
 
 <script is:inline>
   const setTheme = () => {
-    let theme;
-
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      theme = localStorage.getItem("theme");
-    } else {
-      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    }
+  let theme;
+  if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+    theme = localStorage.getItem("theme");
+  } else {
+    theme = "dark"; // always default to dark
+  }
+  document.documentElement.classList[theme ? "add" : "remove"](theme);
 
     document.documentElement.classList[theme ? "add" : "remove"](theme);
 
