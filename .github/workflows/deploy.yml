@@ -1,45 +1,33 @@
 name: Build and Deploy Astro to GitHub Pages
-
 on:
   push:
     branches: [ main, master, feature/site-update ]
   workflow_dispatch:
-
 permissions:
   contents: write
   pages: write
   id-token: write
-
 jobs:
-  deploy:
-    permissions:
-      contents: write
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
       - name: Install dependencies
         run: npm ci
-
       - name: Build site
         run: npm run build
-
       - name: Ensure Pages skip Jekyll
         run: |
           if [ -d ./dist ]; then
             touch ./dist/.nojekyll
           fi
-
       - name: Deploy to GitHub Pages (peaceiris)
         uses: peaceiris/actions-gh-pages@v3
         with:
-          # Prefer a personal deploy token (GH_PAGES_TOKEN). If not set, fall back to the default GITHUB_TOKEN.
           personal_token: ${{ secrets.GH_PAGES_TOKEN || github.token }}
           publish_dir: ./dist
