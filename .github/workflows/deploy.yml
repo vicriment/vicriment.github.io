@@ -11,6 +11,9 @@ permissions:
   id-token: write
 
 jobs:
+  deploy:
+    permissions:
+      contents: write
   build:
     runs-on: ubuntu-latest
     steps:
@@ -37,5 +40,6 @@ jobs:
       - name: Deploy to GitHub Pages (peaceiris)
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Prefer a personal deploy token (GH_PAGES_TOKEN). If not set, fall back to the default GITHUB_TOKEN.
+          personal_token: ${{ secrets.GH_PAGES_TOKEN || github.token }}
           publish_dir: ./dist
