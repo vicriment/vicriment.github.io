@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import Layout from "../../layouts/Layout.astro";
+import { formatDate } from "../../lib/utils";
+
+const posts = await getCollection("posts");
+const poetry = await getCollection("poetry");
+
+const items = [...posts.map((p) => ({ ...p, kind: "posts" })), ...poetry.map((p) => ({ ...p, kind: "poetry" }))];
+items.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <main>
+    <h1 class="mb-4 text-2xl">Writing</h1>
+    <ul class="flex flex-col gap-1.5">
+      {
+        items.map((item) => (
+          <li>
+            <a
+              href={`/${item.kind}/${item.slug}`}
+              class="group flex justify-between gap-3"
+            >
+              <span class="group-hover:underline">{item.data.title}</span>
+              <span class="text-nowrap text-zinc-500">{formatDate(item.data.date)}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Layout>

@@ -1,0 +1,44 @@
+---
+import { SITE_DESCRIPTION, SITE_TITLE } from "../../consts";
+import Layout from "../../layouts/Layout.astro";
+
+---
+
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <main>
+    <h1 class="mb-4 text-2xl">Zines</h1>
+    <p class="mb-4">A place for zines and small printed works. Click an item to view.</p>
+    <ul class="grid grid-cols-2 gap-4">
+      <li>
+        <a href="/static/poetry/bat.png" class="block border p-2">
+          <img src="/static/poetry/bat.png" alt="bat" />
+          <div class="mt-2">bat</div>
+        </a>
+      </li>
+      <li>
+        <a href="/static/poetry/death.png" class="block border p-2">
+          <img src="/static/poetry/death.png" alt="death" />
+          <div class="mt-2">death</div>
+        </a>
+      </li>
+      <li>
+        <a href="/static/poetry/eyes.png" class="block border p-2">
+          <img src="/static/poetry/eyes.png" alt="eyes" />
+          <div class="mt-2">eyes</div>
+        </a>
+      </li>
+      <li>
+        <a href="/static/poetry/lotus.png" class="block border p-2">
+          <img src="/static/poetry/lotus.png" alt="lotus" />
+          <div class="mt-2">lotus</div>
+        </a>
+      </li>
+      <li>
+        <a href="/static/poetry/nerium.png" class="block border p-2">
+          <img src="/static/poetry/nerium.png" alt="nerium" />
+          <div class="mt-2">nerium</div>
+        </a>
+      </li>
+    </ul>
+  </main>
+</Layout>
