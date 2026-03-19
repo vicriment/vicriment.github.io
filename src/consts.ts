@@ -6,5 +6,5 @@ export const SITE_TITLE = "vicriment's void";
 export const SITE_DESCRIPTION =
   "thoughts & prayers";
 
-export const EMAIL = "sthirkal@gmail.com";
+export const EMAIL = "vicriment@proton.me";
 
